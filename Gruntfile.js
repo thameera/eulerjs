@@ -13,12 +13,19 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: 'node main.js ' + grunt.option('p')
+      },
+      create: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: 'cp template.js problems/' + grunt.option('p') + '.js'
       }
     },
     watch: {
       js: {
         files: ['*.js', 'problems/*.js'],
-        tasks: ['jshint', 'shell']
+        tasks: ['jshint', 'shell:run']
       }
     }
   });
@@ -27,6 +34,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('default', ['jshint', 'shell', 'watch']);
+  grunt.registerTask('default', ['jshint', 'shell:run', 'watch']);
+  grunt.registerTask('create', ['shell:create']);
 };
 
