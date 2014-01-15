@@ -1,7 +1,7 @@
 {
   "name": "euler",
   "version": "0.0.0",
-  "description": "Euler problem solving with Javascript",
+  "description": "Project Euler problem solving with Javascript",
   "main": "main.js",
   "author": "Thameera Senanayaka",
   "devDependencies": {
@@ -11,6 +11,7 @@
     "grunt-contrib-watch": "~0.5.3"
   },
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "mathjs": "~0.17.1"
   }
 }
