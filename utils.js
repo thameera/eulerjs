@@ -56,7 +56,7 @@ var primesUnder = function(n) {
 /*
  * Returns whether n is a prime or not
  * @param {number} n
- * @param {Array} [primes=[]] Optional array of primes
+ * @param {Array} [primes] Optional array of primes
  */
 var isPrime = function(n, primes) {
   if (n < 2) return false;
@@ -64,10 +64,26 @@ var isPrime = function(n, primes) {
   return !dividesAny(n, primes);
 };
 
+/*
+ * Returns the first prime after n
+ * @param {number} n
+ * @param {Array} [primes] Optional array of primes
+ */
+var primeAfter = function(n, primes) {
+  if (n < 2) return 2;
+  n = divides(n, 2) ? n + 1: n + 2;
+  primes = primes || primesUnder(n);
+  while (!isPrime(n, primes)) {
+    n += 2;
+  }
+  return n;
+};
+
 module.exports = {
   'divides': divides,
   'dividesAny': dividesAny,
   'isPrime': isPrime,
+  'primeAfter': primeAfter,
   'primeFactors': primeFactors,
   'primesUnder': primesUnder
 };
