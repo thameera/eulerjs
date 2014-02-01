@@ -26,6 +26,10 @@ Example:
 
 Grunt will watch the Javascript files and run jshint and execute the solution at each update to the file.
 
+If you prefer not to use grunt, you can run a specific solution with:
+
+    node main.js <problem number>
+
 ## Creating a new solution from the template
 
     grunt create --p=<problem number>
