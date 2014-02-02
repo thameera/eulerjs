@@ -42,12 +42,18 @@ var primeFactors = function(n) {
  */
 var primesUnder = function(n) {
   if (typeof n !== 'number' || n <= 2) return [];
-  var primes = [2];
+
+  var a = [], primes = [2];
+
   _.each(_.range(3, n, 2), function(i) {
-    if (!dividesAny(i, primes)) {
-      primes.push(i);
-    }
+    if (a[i]) return;
+
+    primes.push(i);
+    _.each(_.range(i, n, i), function(j) {
+      a[j] = 1;
+    });
   });
+
   return primes;
 };
 
