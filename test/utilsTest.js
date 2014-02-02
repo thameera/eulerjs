@@ -79,5 +79,21 @@ describe('Utils', function() {
       assert.equal(479, pa(470));
     });
   });
+
+  describe('arraySum', function() {
+    var as = utils.arraySum;
+    it('should calculate the array sum', function() {
+      assert.equal(10, as([2, 3, 5]));
+      assert.equal(0, as([0, 0]));
+    });
+  });
+
+  describe('arrayProd', function() {
+    var ap = utils.arrayProd;
+    it('should calculate the array sum', function() {
+      assert.equal(30, ap([2, 3, 5]));
+      assert.equal(0, ap([7, 0]));
+    });
+  });
 });
 

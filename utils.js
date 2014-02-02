@@ -77,7 +77,29 @@ var primeAfter = function(n, primes) {
   return n;
 };
 
+/*
+ * Returns the sum of numbers in the array
+ * @param {Array} a
+ */
+var arraySum = function(a) {
+  return _.reduce(a, function(sum, i) {
+    return sum + i;
+  });
+};
+
+/*
+ * Returns the product of numbers in the array
+ * @param {Array} a
+ */
+var arrayProd = function(a) {
+  return _.reduce(a, function(prod, i) {
+    return prod ? prod * i : i;
+  });
+};
+
 module.exports = {
+  'arrayProd': arrayProd,
+  'arraySum': arraySum,
   'divides': divides,
   'dividesAny': dividesAny,
   'isPrime': isPrime,
