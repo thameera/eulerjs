@@ -34,3 +34,13 @@ If you prefer not to use grunt, you can run a specific solution with:
 
     grunt create --p=<problem number>
 
+## Running the tests
+
+The tests for utils.js are written in Mocha. Install Mocha if you haven't already.
+
+    npm install -g mocha
+
+Run the tests with:
+
+    mocha
+

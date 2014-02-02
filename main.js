@@ -1,8 +1,6 @@
 var _ = require('lodash'),
-    mathjs = require('mathjs'),
+    math= require('mathjs')(),
     utils = require('./utils');
-
-var math = mathjs();
 
 var prob = +process.argv.splice(2)[0];
 if (!prob) prob = 1;

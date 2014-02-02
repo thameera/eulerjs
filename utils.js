@@ -1,7 +1,5 @@
 var _ = require('lodash'),
-    mathjs = require('mathjs');
-
-var math = mathjs();
+    math = require('mathjs')();
 
 /*
  * Returns whether a is divisible by b
