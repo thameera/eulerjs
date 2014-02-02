@@ -103,10 +103,41 @@ var arrayProd = function(a) {
   });
 };
 
+/*
+ * Returns an array of all the divisors of a given number
+ * @param {number} n
+ */
+var divisors = function(n) {
+
+  var cache = [];
+
+  var rejectIndex = function(i, num, j) {
+    if (j !== i) return true;
+  };
+
+  var rec = function(a) {
+    if (a.length < 2) return a;
+    if (a.length === 2) return a.concat(arrayProd(a));
+    var res = [];
+    for(var i = 0, len = a.length; i < len; i++) {
+      var t = _.filter(a, rejectIndex.bind(null, i));
+      if (_.findIndex(cache, t) < 0) 
+        cache.push(t);
+      else
+        continue;
+      res = res.concat(arrayProd(t), rec(t));
+    }
+    return _.sortBy(_.uniq(_.compact(res)));
+  };
+
+  return rec(primeFactors(n).concat(1));
+};
+
 module.exports = {
   'arrayProd': arrayProd,
   'arraySum': arraySum,
   'divides': divides,
+  'divisors': divisors,
   'dividesAny': dividesAny,
   'isPrime': isPrime,
   'primeAfter': primeAfter,

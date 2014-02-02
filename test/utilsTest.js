@@ -95,5 +95,13 @@ describe('Utils', function() {
       assert.equal(0, ap([7, 0]));
     });
   });
+
+  describe('divisors', function() {
+    var div = utils.divisors;
+    it('should calculate the array sum', function() {
+      assert.deepEqual([1, 2, 4, 7, 14, 28], div(28));
+      assert.equal(9, div(100).length);
+    });
+  });
 });
 
