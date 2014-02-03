@@ -4,6 +4,9 @@ module.exports = function(grunt) {
     jshint: {
       all: {
         src: ['*.js', 'problems/*.js']
+      },
+      test: {
+        src: ['*.js', 'test/*.js']
       }
     },
     shell: {
@@ -22,10 +25,22 @@ module.exports = function(grunt) {
         command: 'cp template.js problems/' + grunt.option('p') + '.js'
       }
     },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/*.js']
+      }
+    },
     watch: {
       js: {
         files: ['*.js', 'problems/*.js'],
         tasks: ['jshint', 'shell:run']
+      },
+      test: {
+        files: ['*.js', 'test/*.js'],
+        tasks: ['jshint:test', 'mochaTest']
       }
     }
   });
@@ -33,8 +48,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('default', ['jshint', 'shell:run', 'watch']);
+  grunt.registerTask('default', ['jshint', 'shell:run', 'watch:js']);
   grunt.registerTask('create', ['shell:create']);
+  grunt.registerTask('test', ['jshint:test', 'mochaTest', 'watch:test']);
 };
 
