@@ -103,5 +103,23 @@ describe('Utils', function() {
       assert.equal(9, div(100).length);
     });
   });
+
+  describe('atoi', function() {
+    var atoi = utils.atoi;
+    it('should convert null to zero', function() {
+      assert.equal(0, atoi(''));
+      assert.equal(0, atoi(null));
+      assert.equal(0, atoi(undefined));
+    });
+    it('should convert strings to numbers', function() {
+      assert.equal(751, atoi('751'));
+      assert.equal(0, atoi('0'));
+      assert.equal(1.23, atoi('1.23'));
+    });
+    it('should convert string[] to number[]', function() {
+      assert.deepEqual([12, 100], atoi(['12', '100']));
+      assert.deepEqual([1024, 0, 981.2], atoi(['1024', '0', '981.2']));
+    });
+  });
 });
 

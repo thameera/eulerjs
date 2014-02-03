@@ -133,9 +133,28 @@ var divisors = function(n) {
   return rec(primeFactors(n).concat(1));
 };
 
+/*
+ * Converts strings to their numerical values
+ * If the input is a string, its numerical value is returned
+ * If the input is an array, a mapped array of numerical values is returned
+ * @param {string|Array} a
+ */
+var atoi = function(a) {
+  if (!a) {
+    return 0;
+  } else if (typeof a === 'string') {
+    return +a;
+  } else if (_.isArray(a)) {
+    return _.map(a, function(c) { return +c; });
+  } else {
+    return a;
+  }
+};
+
 module.exports = {
   'arrayProd': arrayProd,
   'arraySum': arraySum,
+  'atoi': atoi,
   'divides': divides,
   'divisors': divisors,
   'dividesAny': dividesAny,

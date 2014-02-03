@@ -3,7 +3,7 @@ var _ = require('lodash');
 var biggie = function(str) {
   var that = {};
 
-  that.sval = str;
+  that.sval = str || '0';
 
   var getArr = function(s) {
     return s.split('').reverse();
@@ -32,8 +32,36 @@ var biggie = function(str) {
     return sum.replace(/^0+/g, '');
   };
 
+  var prod = function(a, b) {
+    a = getArr(a.sval);
+    b = getArr(b.sval);
+    var result = biggie(), residue = 0, val, s;
+
+    b.forEach(function(c, i) {
+      s = ''; residue = 0;
+      _.times(i, function(n) { s += '0'; });
+
+      a.forEach(function(d) {
+        val = num(c) * num(d) + residue;
+        residue = Math.floor(val/10);
+        s += val % 10;
+      });
+
+      s += getArr('' + residue);
+      s = getArr(s).join('');
+      result.add(biggie(s));
+    });
+
+    return result.sval;
+  };
+
   that.add = function(b) {
     that.sval = add(that, b);
+    return that;
+  };
+
+  that.prod = function(b) {
+    that.sval = prod(that, b);
     return that;
   };
 
